@@ -310,6 +310,47 @@
       color: var(--text-muted);
       line-height: 1.55;
     }
+    /* VERIFY */
+    #verify { padding: 80px 0; }
+    #verify h2 { margin-bottom: 0.5rem; }
+    .verify-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 2.5rem 0 1.5rem;
+    }
+    .verify-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .verify-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .verify-card-icon { font-size: 1.75rem; flex-shrink: 0; }
+    .verify-card-body { flex: 1; }
+    .verify-card-label { font-weight: 600; font-size: 0.95rem; }
+    .verify-card-domain { font-size: 0.8rem; color: var(--accent); margin-top: 0.15rem; }
+    .verify-card-lang { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem; }
+    .verify-card-arrow { color: var(--text-muted); font-size: 1.1rem; flex-shrink: 0; }
+    .verify-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    @media (max-width: 600px) {
+      .verify-grid { grid-template-columns: 1fr; }
+    }
 
     /* ─── Pricing ───────────────────────────────────────────────── */
     #pricing { background: var(--bg-card); }
@@ -690,7 +731,7 @@
       </p>
       <div class="hero-cta-group">
         <!-- ⚠️ Remplacer les href par les vraies URLs Whop -->
-        <a href="WHOP_DIRECTORY_URL" class="btn btn-primary btn-lg">Accéder au directory — 25&nbsp;€/an</a>
+        <a href="WHOP_DIRECTORY_URL" class="btn btn-primary btn-lg">Accéder au listing web — 25&nbsp;€/an</a>
         <a href="WHOP_SHEET_URL" class="btn btn-secondary btn-lg">Voir l'offre Google Sheet — 199&nbsp;€/an</a>
       </div>
       <p class="hero-microcopy">Accès annuel. Mises à jour hebdomadaires incluses.</p>
@@ -797,6 +838,54 @@
     </div>
   </section>
 
+  <!-- VERIFY -->
+  <section id="verify">
+    <div class="container">
+      <span class="eyebrow">Transparence</span>
+      <h2>Vérifiez par vous-même.</h2>
+      <p class="section-intro">Nos listings publics contiennent les mêmes contacts — sans les emails. Parcourez-les librement pour juger de la qualité et de la pertinence des données avant d'acheter.</p>
+      <div class="verify-grid">
+        <a href="https://www.sallesdeconcert.com" target="_blank" rel="noopener" class="verify-card">
+          <div class="verify-card-icon">🎭</div>
+          <div class="verify-card-body">
+            <div class="verify-card-label">Salles de concert</div>
+            <div class="verify-card-domain">sallesdeconcert.com</div>
+            <div class="verify-card-lang">🇫🇷 Français</div>
+          </div>
+          <div class="verify-card-arrow">→</div>
+        </a>
+        <a href="https://www.music-venues.com" target="_blank" rel="noopener" class="verify-card">
+          <div class="verify-card-icon">🎭</div>
+          <div class="verify-card-body">
+            <div class="verify-card-label">Concert venues</div>
+            <div class="verify-card-domain">music-venues.com</div>
+            <div class="verify-card-lang">🇬🇧 English</div>
+          </div>
+          <div class="verify-card-arrow">→</div>
+        </a>
+        <a href="https://www.festivalsdemusique.com" target="_blank" rel="noopener" class="verify-card">
+          <div class="verify-card-icon">🎪</div>
+          <div class="verify-card-body">
+            <div class="verify-card-label">Festivals de musique</div>
+            <div class="verify-card-domain">festivalsdemusique.com</div>
+            <div class="verify-card-lang">🇫🇷 Français</div>
+          </div>
+          <div class="verify-card-arrow">→</div>
+        </a>
+        <a href="https://www.music-festivals.net" target="_blank" rel="noopener" class="verify-card">
+          <div class="verify-card-icon">🎪</div>
+          <div class="verify-card-body">
+            <div class="verify-card-label">Music festivals</div>
+            <div class="verify-card-domain">music-festivals.net</div>
+            <div class="verify-card-lang">🇬🇧 English</div>
+          </div>
+          <div class="verify-card-arrow">→</div>
+        </a>
+      </div>
+      <p class="verify-note">Les emails de contact sont exclusivement disponibles dans la version payante. C'est ce qui fait la valeur de The Music Deck.</p>
+    </div>
+  </section>
+
   <!-- PRICING -->
   <section id="pricing">
     <div class="container">
@@ -807,7 +896,7 @@
         <!-- Web Directory -->
         <div class="pricing-card">
           <div>
-            <div class="pricing-name">Web Directory</div>
+            <div class="pricing-name">Listing Web</div>
             <div class="pricing-price">25&nbsp;€ <span>/ an</span></div>
             <div class="pricing-desc">Accès au moteur de recherche en ligne</div>
           </div>
@@ -820,7 +909,7 @@
           </ul>
           <div class="pricing-ideal">Idéal pour : artistes DIY, managers débutants, recherche ponctuelle</div>
           <!-- ⚠️ Remplacer href par l'URL Whop du Web Directory -->
-          <a href="WHOP_DIRECTORY_URL" class="btn btn-secondary">Choisir le Web Directory — 25&nbsp;€/an</a>
+          <a href="WHOP_DIRECTORY_URL" class="btn btn-secondary">Choisir le listing web — 25&nbsp;€/an</a>
         </div>
 
         <!-- Master Google Sheet -->
@@ -844,7 +933,7 @@
         </div>
 
       </div>
-      <p class="pricing-microcopy">Choisis le Directory Web pour la recherche, ou la Master Sheet pour l'export. La base est la même.</p>
+      <p class="pricing-microcopy">Choisis le listing web pour la recherche, ou la Master Sheet pour l'export. La base est la même.</p>
     </div>
   </section>
 
@@ -858,7 +947,7 @@
         <div class="step">
           <div class="step-number">1</div>
           <h3>Choisis ta formule</h3>
-          <p>Clique sur l'offre qui te correspond — Web Directory ou Master Sheet. Tu es redirigé vers le checkout sécurisé de <strong>Whop</strong>.</p>
+          <p>Clique sur l'offre qui te correspond — listing web ou Master Sheet. Tu es redirigé vers le checkout sécurisé de <strong>Whop</strong>.</p>
           <span class="step-whop-note">Paiement sécurisé via Whop (Stripe)</span>
         </div>
 
@@ -894,11 +983,11 @@
           <div class="preview-video-wrap">
             <iframe class="preview-video"
               src="https://www.youtube.com/embed/YOUTUBE_ID_1?rel=0&modestbranding=1"
-              title="Le Web Directory en action"
+              title="Le listing web en action"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen></iframe>
-            <div class="preview-video-label">Le Web Directory en action</div>
+            <div class="preview-video-label">Le listing web en action</div>
           </div>
 
           <div class="preview-video-wrap">
@@ -927,16 +1016,14 @@
       <div class="about-inner">
         <span class="eyebrow">À propos</span>
         <h2>On vient de la route, pas du marketing.</h2>
-        <!-- ⚠️ FICTIF — Remplacer par la vraie histoire. Valider le nom du fondateur. -->
         <p class="about-text">
-          The Music Deck est née sur la route, entre deux dates. Basée en France et au Royaume-Uni, notre équipe vit du booking depuis plus de dix ans. Le projet est porté par <strong>Eddy Beaumont</strong>, tourneur et fondateur, qui a constitué cette base contact après contact, tournée après tournée.
+          The Music Deck est née sur la route, entre deux dates. Basée en France et au Royaume-Uni, notre équipe vit du booking depuis plus de dix ans et a constitué cette base contact après contact, tournée après tournée.
         </p>
-        <!-- ⚠️ Choisir une version de citation, ou la remplacer par la vraie -->
         <div class="about-quote">
           <blockquote>
             « On a simplement créé ce qu'on aurait rêvé d'avoir quand on a débuté : une base fiable, vivante, faite par des gens qui décrochent vraiment des dates. »
           </blockquote>
-          <cite>— Eddy Beaumont, fondateur de The Music Deck</cite>
+          <cite>— Eddy, fondateur de The Music Deck</cite>
         </div>
       </div>
     </div>
@@ -969,7 +1056,7 @@
             </span>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Le Web Directory (25 €/an) donne accès à un moteur de recherche complet, sans export. La Master Google Sheet (199 €/an) contient la même base, entièrement exportable — idéale pour ton CRM ou tes campagnes d'emailing.</div>
+            <div class="faq-answer-inner">Le listing web (25 €/an) donne accès à un moteur de recherche complet, sans export. La Master Google Sheet (199 €/an) contient la même base, entièrement exportable — idéale pour ton CRM ou tes campagnes d'emailing.</div>
           </div>
         </div>
 
@@ -1048,7 +1135,7 @@
       </p>
       <div class="cta-final-group">
         <!-- ⚠️ Remplacer les href par les vraies URLs Whop -->
-        <a href="WHOP_DIRECTORY_URL" class="btn btn-secondary btn-lg">Accéder au directory — 25&nbsp;€/an</a>
+        <a href="WHOP_DIRECTORY_URL" class="btn btn-secondary btn-lg">Accéder au listing web — 25&nbsp;€/an</a>
         <a href="WHOP_SHEET_URL" class="btn btn-primary btn-lg">Obtenir la base complète — 199&nbsp;€/an</a>
       </div>
       <p class="cta-microcopy">Accès immédiat après paiement. Mises à jour incluses toute l'année.</p>
@@ -1069,7 +1156,7 @@
           <a href="/confidentialite.html">Confidentialité</a>
           <a href="/contact.html">Contact</a>
           <!-- Lien "Déjà abonné" -->
-          <a href="https://access.themusicdeck.com/login?return_to=https://prog.themusicdeck.com/" style="color:var(--accent)">Déjà abonné ? Accéder au directory →</a>
+          <a href="https://access.themusicdeck.com/login?return_to=https://prog.themusicdeck.com/" style="color:var(--accent)">Déjà abonné ? Accéder au listing web →</a>
         </div>
       </div>
     </div>
