@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Music Deck — Direct contacts of festival & venue bookers, verified weekly</title>
+  <meta name="description" content="4,000 direct contacts of bookers and programmers (USA + Europe), verified weekly by touring professionals. Web listing from €25/year or Master Google Sheet €199/year." />
+  <meta property="og:title" content="The Music Deck — Direct contacts of festival & venue bookers" />
+  <meta property="og:description" content="4,000 verified contacts, updated weekly. From €25/year." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.themusicdeck.com/en/" />
+  <!-- og:image to add: <meta property="og:image" content="https://www.themusicdeck.com/og-image.jpg" /> -->
+  <link rel="alternate" hreflang="fr" href="https://www.themusicdeck.com/fr/" />
+  <link rel="alternate" hreflang="en" href="https://www.themusicdeck.com/en/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- GA4 — uncomment and replace ID before going live
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+
+  <!-- Meta Pixel — uncomment and replace ID before going live
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'XXXXXXXXXXXXXXX');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
+  -->
+
+  <style>
+    /* ─── Reset & base ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #121212;
+      --card-bg: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #F5F5F5;
+      --text-muted: #888;
+      --accent: #EFFF00;
+      --accent-dark: #c8d800;
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── Layout ────────────────────────────────────────────────────── */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 80px 0; }
+
+    /* ─── Buttons ───────────────────────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.15s;
+      border: none;
+      text-align: center;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-secondary { background: transparent; color: var(--text); border: 2px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--text-muted); }
+    .btn-lg { padding: 16px 32px; font-size: 1rem; }
+
+    /* ─── Eyebrow ───────────────────────────────────────────────────── */
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    /* ─── Headings ──────────────────────────────────────────────────── */
+    h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+    h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .section-intro { font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin-bottom: 1rem; line-height: 1.65; }
+
+    /* ─── Nav ───────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(18,18,18,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    .nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-cta { padding: 10px 20px; font-size: 0.875rem; }
+
+    /* ─── Hero ──────────────────────────────────────────────────────── */
+    #hero { padding-top: 100px; padding-bottom: 80px; }
+    .hero-subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 640px; margin: 1.5rem 0 2rem; line-height: 1.65; }
+    .hero-cta-group { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 1rem; }
+    .hero-microcopy { font-size: 0.8rem; color: var(--text-muted); }
+    .hero-visual { margin-top: 3rem; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--card-bg); aspect-ratio: 16/7; display: flex; align-items: center; justify-content: center; }
+    .hero-visual-placeholder { display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--text-muted); font-size: 0.875rem; }
+
+    /* ─── Proof bar ─────────────────────────────────────────────────── */
+    #proof-bar { padding: 32px 0; background: var(--card-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: center; }
+    .proof-number { font-size: 2rem; font-weight: 900; color: var(--accent); }
+    .proof-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+    @media (max-width: 600px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ─── Problem ───────────────────────────────────────────────────── */
+    .problem-list li { padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 1rem; color: var(--text-muted); padding-left: 1.5rem; position: relative; }
+    .problem-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+    .mono { font-family: monospace; background: #222; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
+
+    /* ─── Solution ──────────────────────────────────────────────────── */
+    .solution-inner { max-width: 700px; }
+    .solution-text { font-size: 1.05rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.5rem; }
+    .solution-tagline { font-size: 1rem; font-weight: 600; color: var(--accent); border-left: 3px solid var(--accent); padding-left: 16px; }
+
+    /* ─── Features ──────────────────────────────────────────────────── */
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    @media (max-width: 768px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .features-grid { grid-template-columns: 1fr; } }
+    .feature-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+    .feature-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .feature-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .feature-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* VERIFY */
+    #verify { padding: 80px 0; }
+    #verify h2 { margin-bottom: 0.5rem; }
+    .verify-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 2.5rem 0 1.5rem;
+      max-width: 500px;
+    }
+    .verify-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .verify-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .verify-card-icon { font-size: 1.75rem; flex-shrink: 0; }
+    .verify-card-body { flex: 1; }
+    .verify-card-label { font-weight: 600; font-size: 0.95rem; }
+    .verify-card-domain { font-size: 0.8rem; color: var(--accent); margin-top: 0.15rem; }
+    .verify-card-arrow { color: var(--text-muted); font-size: 1.1rem; flex-shrink: 0; }
+    .verify-note { font-size: 0.85rem; color: var(--text-muted); max-width: 520px; }
+
+    /* ─── Pricing ───────────────────────────────────────────────────── */
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+    @media (max-width: 640px) { .pricing-grid { grid-template-columns: 1fr; } }
+    .pricing-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; position: relative; }
+    .pricing-card.featured { border-color: var(--accent); }
+    .pricing-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; white-space: nowrap; }
+    .pricing-name { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .pricing-price { font-size: 3rem; font-weight: 900; line-height: 1; }
+    .pricing-price span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+    .pricing-desc { font-size: 0.875rem; color: var(--text-muted); margin-top: 0.4rem; }
+    .pricing-features li { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; font-size: 0.9rem; border-bottom: 1px solid var(--border); }
+    .pricing-features li:last-child { border-bottom: none; }
+    .check { color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .cross { color: var(--text-muted); flex-shrink: 0; }
+    .pricing-ideal { font-size: 0.8rem; color: var(--text-muted); font-style: italic; }
+    .pricing-microcopy { text-align: center; font-size: 0.875rem; color: var(--text-muted); margin-top: 1.5rem; }
+
+    /* ─── How it works ──────────────────────────────────────────────── */
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; }
+    @media (max-width: 768px) { .steps-grid { grid-template-columns: 1fr; } }
+    .step { position: relative; padding-left: 1rem; }
+    .step-number { font-size: 3rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 0.75rem; opacity: 0.9; }
+    .step h3 { margin-bottom: 0.5rem; }
+    .step p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+    .step-whop-note { display: inline-block; margin-top: 0.75rem; font-size: 0.75rem; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 3px 8px; opacity: 0.8; }
+
+    /* ─── Preview ───────────────────────────────────────────────────── */
+    .preview-inner { max-width: 800px; margin: 0 auto; }
+    .preview-videos { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0 1.5rem; }
+    @media (max-width: 640px) { .preview-videos { grid-template-columns: 1fr; } }
+    .preview-video-wrap { display: flex; flex-direction: column; gap: 0.75rem; }
+    .preview-video { width: 100%; aspect-ratio: 16/9; border-radius: var(--radius); border: 1px solid var(--border); background: var(--card-bg); }
+    .preview-video-label { font-size: 0.8rem; color: var(--text-muted); text-align: center; }
+    .preview-caption { display: flex; align-items: center; gap: 16px; font-size: 0.8rem; color: var(--text-muted); }
+    .preview-freshness { background: var(--card-bg); border: 1px solid var(--border); padding: 4px 10px; border-radius: 20px; color: var(--accent); font-weight: 600; }
+
+    /* ─── About ─────────────────────────────────────────────────────── */
+    .about-inner { max-width: 680px; }
+    .about-text { font-size: 1.05rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.5rem; }
+    .about-quote { border-left: 3px solid var(--accent); padding-left: 1.5rem; }
+    .about-quote blockquote { font-size: 1.05rem; font-style: italic; line-height: 1.65; margin-bottom: 0.5rem; }
+    .about-quote cite { font-size: 0.875rem; color: var(--text-muted); }
+
+    /* ─── FAQ ───────────────────────────────────────────────────────── */
+    .faq-list { max-width: 720px; margin-top: 2rem; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; background: none; border: none; color: var(--text); font-size: 1rem; font-weight: 600; cursor: pointer; text-align: left; font-family: inherit; }
+    .faq-question:hover { color: var(--accent); }
+    .faq-arrow { flex-shrink: 0; transition: transform 0.25s; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s ease; }
+    .faq-item.open .faq-answer { grid-template-rows: 1fr; }
+    .faq-answer-inner { overflow: hidden; padding-bottom: 20px; font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* ─── CTA final ─────────────────────────────────────────────────── */
+    #cta-final { background: var(--card-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
+    .cta-text { font-size: 1.05rem; color: var(--text-muted); max-width: 580px; margin: 0 auto 2rem; line-height: 1.7; }
+    .cta-final-group { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 1rem; }
+    .cta-microcopy { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* ─── Footer ────────────────────────────────────────────────────── */
+    footer { padding: 40px 0; border-top: 1px solid var(--border); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-logo { font-weight: 900; font-size: 1.1rem; }
+    .footer-logo span { color: var(--accent); }
+    .footer-copy { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .footer-links a { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ─── Mobile sticky CTA ─────────────────────────────────────────── */
+    .sticky-cta { display: none; }
+    @media (max-width: 768px) {
+      .sticky-cta {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 200;
+        padding: 12px 16px;
+        background: rgba(18,18,18,0.96);
+        border-top: 1px solid var(--border);
+        backdrop-filter: blur(10px);
+        gap: 10px;
+      }
+      .sticky-cta .btn { flex: 1; font-size: 0.85rem; padding: 13px 10px; }
+      body { padding-bottom: 72px; }
+    }
+
+    /* ─── Divider ───────────────────────────────────────────────────── */
+    .section-divider { height: 1px; background: var(--border); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">The Music<span>Deck</span></div>
+      <!-- ⚠️ Replace href with Whop Web Listing URL -->
+      <a href="WHOP_DIRECTORY_URL" class="btn btn-primary nav-cta">Get access — €25/year</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <span class="eyebrow">B2B Booking · USA + Europe</span>
+      <h1>Direct contacts of festival &amp; venue bookers —&nbsp;verified every week.</h1>
+      <p class="hero-subtitle">
+        4,000 direct contacts (USA + Europe), built by touring professionals, for bookers, agents, managers and artists. No generic emails. Decision-makers only. From €25/year, weekly updates included.
+      </p>
+      <div class="hero-cta-group">
+        <!-- ⚠️ Replace href with real Whop URLs -->
+        <a href="WHOP_DIRECTORY_URL" class="btn btn-primary btn-lg">Access the web listing — €25/year</a>
+        <a href="WHOP_SHEET_URL" class="btn btn-secondary btn-lg">See the Google Sheet offer — €199/year</a>
+      </div>
+      <p class="hero-microcopy">Annual access. Weekly updates included.</p>
+
+      <!-- ⚠️ Replace with a real screenshot (stylised or blurred) -->
+      <div class="hero-visual">
+        <div class="hero-visual-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <span>Interface screenshot — to be inserted here</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF BAR -->
+  <section id="proof-bar">
+    <div class="container">
+      <div class="proof-grid">
+        <div>
+          <div class="proof-number">4,000</div>
+          <div class="proof-label">verified contacts</div>
+        </div>
+        <div>
+          <div class="proof-number">50–70</div>
+          <div class="proof-label">new contacts / week</div>
+        </div>
+        <div>
+          <div class="proof-number">2 hubs</div>
+          <div class="proof-label">USA + Europe (majority France)</div>
+        </div>
+        <div>
+          <div class="proof-number">100%</div>
+          <div class="proof-label">decision-makers (booking)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem">
+    <div class="container">
+      <span class="eyebrow">The problem</span>
+      <h2>You know the problem better than anyone.</h2>
+      <ul class="problem-list">
+        <li>Contact databases bought online are outdated, generic (<span class="mono">info@</span>, <span class="mono">contact@</span>) and lead nowhere.</li>
+        <li>You spend more time hunting for the right person than actually booking.</li>
+        <li>Programmers change jobs, festivals fold — and nobody updates the lists.</li>
+        <li>Existing tools cost a fortune for mediocre quality.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section id="solution">
+    <div class="container">
+      <div class="solution-inner">
+        <span class="eyebrow">The solution</span>
+        <h2>Our booking database. Now in your hands.</h2>
+        <p class="solution-text">
+          The Music Deck is not a database bought and resold. It's <strong>our own address book</strong> — the one we use every day to book our artists. Every contact is verified because we use it ourselves. When a programmer changes organisation, retires, or a festival folds, we're among the first to know and we update the database: 50 to 70 entries updated or added every week. You get a living tool, not a static file.
+        </p>
+        <div class="solution-tagline">"Built by touring professionals, for bookers and artists."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="container">
+      <span class="eyebrow">Why it's different</span>
+      <h2>Why The Music Deck changes the game.</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>It's our real database.</h3>
+          <p>The one we use for our own booking — not a list generated for sale.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✅</div>
+          <h3>Everything is verified.</h3>
+          <p>We use it ourselves: no ghost contacts, no dead addresses.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Updated every week.</h3>
+          <p>Job changes, departures, festivals folding: we track it in real time.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Decision-makers only.</h3>
+          <p>Direct addresses of the people in charge of programming, never generic inboxes.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>USA + Europe.</h3>
+          <p>2,000 contacts across the Atlantic, 2,000 in Europe, with strong France coverage.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎸</div>
+          <h3>By people in the industry.</h3>
+          <p>Built by touring professionals who know the reality of booking outreach.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERIFY -->
+  <section id="verify">
+    <div class="container">
+      <span class="eyebrow">Transparency</span>
+      <h2>See for yourself.</h2>
+      <p class="section-intro">Our public listings contain the same contacts — without the emails. Browse them freely to judge the quality and relevance of the data before buying.</p>
+      <div class="verify-grid">
+        <a href="https://www.music-venues.com" target="_blank" rel="noopener" class="verify-card">
+          <div class="verify-card-icon">🎭</div>
+          <div class="verify-card-body">
+            <div class="verify-card-label">Concert venues</div>
+            <div class="verify-card-domain">music-venues.com</div>
+          </div>
+          <div class="verify-card-arrow">→</div>
+        </a>
+        <a href="https://www.music-festivals.net" target="_blank" rel="noopener" class="verify-card">
+          <div class="verify-card-icon">🎪</div>
+          <div class="verify-card-body">
+            <div class="verify-card-label">Music festivals</div>
+            <div class="verify-card-domain">music-festivals.net</div>
+          </div>
+          <div class="verify-card-arrow">→</div>
+        </a>
+      </div>
+      <p class="verify-note">Contact emails are exclusively available in the paid version. That's the value of The Music Deck.</p>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <span class="eyebrow">Plans</span>
+      <h2>Two plans. One quality of data.</h2>
+      <div class="pricing-grid">
+
+        <div class="pricing-card">
+          <div>
+            <div class="pricing-name">Web Listing</div>
+            <div class="pricing-price">€25 <span>/ year</span></div>
+            <div class="pricing-desc">Online browsing — no export</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> 4,000 verified contacts</li>
+            <li><span class="check">✓</span> Weekly updates included</li>
+            <li><span class="check">✓</span> Full search engine</li>
+            <li><span class="check">✓</span> USA + Europe (majority France)</li>
+            <li><span class="cross">✗</span> No export — each contact copied manually</li>
+          </ul>
+          <div class="pricing-ideal">Best for: spot-checking a contact, completing an existing database</div>
+          <!-- ⚠️ Replace href with Whop Web Listing URL -->
+          <a href="WHOP_DIRECTORY_URL" class="btn btn-secondary">Choose the web listing — €25/year</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Most complete</div>
+          <div>
+            <div class="pricing-name">Master Google Sheet</div>
+            <div class="pricing-price">€199 <span>/ year</span></div>
+            <div class="pricing-desc">Full database, fully exportable</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> 4,000 verified contacts</li>
+            <li><span class="check">✓</span> Weekly updates included</li>
+            <li><span class="check">✓</span> Filters, sorts and free imports</li>
+            <li><span class="check">✓</span> USA + Europe (majority France)</li>
+            <li><span class="check">✓</span> <strong>Unlimited export</strong> (CSV, Excel, CRM)</li>
+          </ul>
+          <div class="pricing-ideal">Best for: agencies, touring professionals, CRM pros, regular campaigns</div>
+          <!-- ⚠️ Replace href with Whop Master Sheet URL -->
+          <a href="WHOP_SHEET_URL" class="btn btn-primary">Get the Master Sheet — €199/year</a>
+        </div>
+
+      </div>
+      <p class="pricing-microcopy">Choose the web listing for browsing, or the Master Sheet for export. The data is the same.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works">
+    <div class="container">
+      <span class="eyebrow">How it works</span>
+      <h2>Access in 3 steps. Nothing to install.</h2>
+      <div class="steps-grid">
+
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Choose your plan</h3>
+          <p>Click the offer that suits you — web listing or Master Sheet. You'll be redirected to the secure <strong>Whop</strong> checkout.</p>
+          <span class="step-whop-note">Secure payment via Whop (Stripe)</span>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Create your Whop account</h3>
+          <p>Whop is the platform that manages your subscription. From your Whop member area you can view invoices, modify or cancel your subscription.</p>
+          <span class="step-whop-note">No separate The Music Deck account needed</span>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Access your listing</h3>
+          <p>Once your subscription is active, the link to your listing is available in your Whop member area — or via <strong>access.themusicdeck.com</strong>. Instant access from any browser.</p>
+          <span class="step-whop-note">Instant access after payment</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PREVIEW -->
+  <section id="preview">
+    <div class="container">
+      <div class="preview-inner">
+        <span class="eyebrow">Preview</span>
+        <h2>What you'll find in the database.</h2>
+
+        <!-- ⚠️ Replace YOUTUBE_ID_1 and YOUTUBE_ID_2 with your unlisted YouTube video IDs -->
+        <div class="preview-videos">
+
+          <div class="preview-video-wrap">
+            <iframe class="preview-video"
+              src="https://www.youtube.com/embed/YOUTUBE_ID_1?rel=0&modestbranding=1"
+              title="The web listing in action"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+            <div class="preview-video-label">The web listing in action</div>
+          </div>
+
+          <div class="preview-video-wrap">
+            <iframe class="preview-video"
+              src="https://www.youtube.com/embed/YOUTUBE_ID_2?rel=0&modestbranding=1"
+              title="The Master Google Sheet"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+            <div class="preview-video-label">The Master Google Sheet</div>
+          </div>
+
+        </div>
+
+        <div class="preview-caption">
+          <span class="preview-freshness">+63 contacts this week</span>
+          <span>Interface preview — real data blurred.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-inner">
+        <span class="eyebrow">About</span>
+        <h2>We come from the road, not from marketing.</h2>
+        <p class="about-text">
+          The Music Deck was born on the road, between two gigs. Based in France and the UK, our team has been living off booking for over ten years — building this database contact by contact, tour by tour.
+        </p>
+        <div class="about-quote">
+          <blockquote>
+            "We simply built what we wished we'd had when we started: a reliable, living database made by people who actually land gigs."
+          </blockquote>
+          <cite>— Eddy, founder of The Music Deck</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions we get asked a lot.</h2>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Are the contacts really up to date?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Yes. We use them ourselves every week in our own booking campaigns, and we update 50 to 70 entries per week. A database that's actually used is a database that stays accurate.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            What's the difference between the two plans?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">The web listing (€25/year) gives access to a full search engine, without export. The Master Google Sheet (€199/year) contains the same database, fully exportable — ideal for your CRM or email campaigns.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Can I upgrade from the listing to the Sheet?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Yes, contact support for a pro-rata upgrade.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Who is The Music Deck for?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Bookers and touring professionals, agents, artist managers, and self-booking artists.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            What's the geographic coverage?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">4,000 contacts in total: 2,000 in the USA and 2,000 in Europe, with strong France coverage. US contacts are verified to exactly the same standard as European ones.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Are these generic emails?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Never. Only direct contacts of the people responsible for programming, never generic inboxes.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Is the subscription renewed automatically?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Yes, your subscription renews automatically each year via Whop (Stripe payment). You can cancel at any time from your Whop member area — no notice period required. If you cancel before renewal, you keep access until the end of the current period.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            What happens if I don't renew?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner"><strong>Web listing:</strong> access stops at expiry — no further login possible. <strong>Master Google Sheet:</strong> you keep your copy indefinitely, but you no longer receive the weekly updates. The new venues and festivals added each week won't be included — that's where the real value of an ongoing subscription lies.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section id="cta-final">
+    <div class="container">
+      <span class="eyebrow">Let's go</span>
+      <h2>Stop searching. Start booking.</h2>
+      <p class="cta-text">
+        Stop wasting hours tracking down the right person. Get instant access to the database touring professionals kept to themselves — and talk directly to the people who programme shows.
+      </p>
+      <div class="cta-final-group">
+        <!-- ⚠️ Replace href with real Whop URLs -->
+        <a href="WHOP_DIRECTORY_URL" class="btn btn-secondary btn-lg">Access the web listing — €25/year</a>
+        <a href="WHOP_SHEET_URL" class="btn btn-primary btn-lg">Get the full database — €199/year</a>
+      </div>
+      <p class="cta-microcopy">Instant access after payment. Updates included all year.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">The Music<span>Deck</span></div>
+          <div class="footer-copy" style="margin-top:6px">France &amp; UK · © The Music Deck</div>
+        </div>
+        <div class="footer-links">
+          <a href="/cgv.html">T&amp;Cs</a>
+          <a href="/confidentialite.html">Privacy</a>
+          <a href="/contact.html">Contact</a>
+          <a href="https://access.themusicdeck.com/login?return_to=https://prog.themusicdeck.com/" style="color:var(--accent)">Already a member? Access the listing →</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- STICKY CTA (mobile only) -->
+  <div class="sticky-cta" aria-hidden="true">
+    <a href="WHOP_DIRECTORY_URL" class="btn btn-secondary">€25/year</a>
+    <a href="WHOP_SHEET_URL" class="btn btn-primary">Master Sheet — €199</a>
+  </div>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    const ctaFinal = document.getElementById('cta-final');
+    const stickyCta = document.querySelector('.sticky-cta');
+    if (ctaFinal && stickyCta) {
+      const observer = new IntersectionObserver(([entry]) => {
+        stickyCta.style.opacity = entry.isIntersecting ? '0' : '1';
+        stickyCta.style.pointerEvents = entry.isIntersecting ? 'none' : 'auto';
+      }, { threshold: 0.1 });
+      observer.observe(ctaFinal);
+    }
+  </script>
+
+</body>
+</html>
