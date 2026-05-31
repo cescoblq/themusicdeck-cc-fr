@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Music Deck — Les vrais contacts des programmateurs de festivals et salles</title>
+  <meta name="description" content="4 000 contacts directs de programmateurs (USA + Europe), vérifiés chaque semaine par des tourneurs. Web Directory 25 €/an ou Master Google Sheet 199 €/an." />
+  <meta property="og:title" content="The Music Deck — Les vrais contacts des programmateurs" />
+  <meta property="og:description" content="4 000 contacts directs vérifiés chaque semaine. À partir de 25 €/an." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.themusicdeck.com/" />
+  <!-- og:image à ajouter : <meta property="og:image" content="https://www.themusicdeck.com/og-image.jpg" /> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #121212;
+      color: #F5F5F5;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Design tokens ─────────────────────────────────────────── */
+    :root {
+      --bg: #121212;
+      --bg-card: #1E1E1E;
+      --bg-elevated: #242424;
+      --text: #F5F5F5;
+      --text-muted: #999;
+      --accent: #EFFF00;
+      --accent-dark: #c8d800;
+      --border: rgba(255,255,255,0.08);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    /* ─── Layout ────────────────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 80px 0; }
+    @media (max-width: 768px) { section { padding: 56px 0; } }
+
+    /* ─── Typography ────────────────────────────────────────────── */
+    h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.25rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; }
+    h3 { font-size: 1rem; font-weight: 700; }
+    .text-muted { color: var(--text-muted); }
+    .text-accent { color: var(--accent); }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    /* ─── Buttons ───────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.15s, opacity 0.15s;
+      white-space: nowrap;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.5); }
+    .btn-lg { padding: 16px 32px; font-size: 1rem; }
+
+    /* ─── Navbar ────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(18,18,18,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-cta { display: none; }
+    @media (min-width: 640px) { .nav-cta { display: inline-flex; } }
+
+    /* ─── Hero ──────────────────────────────────────────────────── */
+    #hero {
+      padding: 96px 0 80px;
+      text-align: center;
+    }
+    @media (max-width: 768px) { #hero { padding: 64px 0 56px; } }
+    .hero-subtitle {
+      max-width: 640px;
+      margin: 20px auto 40px;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+    @media (min-width: 480px) {
+      .hero-cta-group { flex-direction: row; justify-content: center; }
+    }
+    .hero-microcopy {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .hero-visual {
+      margin-top: 56px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Placeholder screenshot — remplacer par une vraie capture */
+    .hero-visual-placeholder {
+      height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      background: linear-gradient(135deg, #1a1a1a 0%, #1e1e1e 100%);
+    }
+    @media (max-width: 768px) { .hero-visual-placeholder { height: 220px; } }
+    .hero-visual-placeholder svg { opacity: 0.3; }
+
+    /* ─── Proof bar ─────────────────────────────────────────────── */
+    #proof-bar {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    @media (min-width: 640px) { .proof-grid { grid-template-columns: repeat(4, 1fr); } }
+    .proof-number {
+      font-size: 2.25rem;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .proof-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* ─── Problem ───────────────────────────────────────────────── */
+    #problem { background: var(--bg); }
+    .problem-list {
+      list-style: none;
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 680px;
+    }
+    .problem-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+    .problem-list li::before {
+      content: "✗";
+      color: #ff4d4d;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ─── Solution ──────────────────────────────────────────────── */
+    #solution { background: var(--bg-card); }
+    .solution-inner {
+      max-width: 720px;
+    }
+    .solution-text {
+      margin-top: 24px;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+    .solution-text strong { color: var(--text); }
+    .solution-tagline {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 12px 20px;
+      border-left: 3px solid var(--accent);
+      background: rgba(239,255,0,0.05);
+      font-style: italic;
+      font-weight: 600;
+      color: var(--text);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    /* ─── Features ──────────────────────────────────────────────── */
+    #features { background: var(--bg); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    @media (min-width: 480px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .feature-icon {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+    .feature-card h3 {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+    .feature-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ─── Pricing ───────────────────────────────────────────────── */
+    #pricing { background: var(--bg-card); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    @media (min-width: 640px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
+    .pricing-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+    .pricing-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #000;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .pricing-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.75rem;
+    }
+    .pricing-price {
+      font-size: 2.75rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .pricing-price span { font-size: 1rem; font-weight: 500; color: var(--text-muted); }
+    .pricing-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.875rem;
+      line-height: 1.45;
+    }
+    .pricing-features li .check { color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+    .pricing-features li .cross { color: #555; flex-shrink: 0; margin-top: 1px; }
+    .pricing-ideal {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .pricing-microcopy {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── Preview ───────────────────────────────────────────────── */
+    #preview { background: var(--bg); }
+    .preview-inner { max-width: 860px; }
+    .preview-visual {
+      margin-top: 32px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    /* Placeholder — à remplacer par une vraie capture floutée */
+    .preview-placeholder {
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    @media (max-width: 768px) { .preview-placeholder { height: 200px; } }
+    .preview-caption {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .preview-freshness {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(239,255,0,0.08);
+      border: 1px solid rgba(239,255,0,0.2);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+    .preview-freshness::before { content: "●"; font-size: 0.5rem; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    /* ─── About ─────────────────────────────────────────────────── */
+    #about { background: var(--bg-card); }
+    .about-inner {
+      max-width: 680px;
+    }
+    .about-text {
+      margin-top: 24px;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+    .about-text strong { color: var(--text); }
+    .about-quote {
+      margin-top: 32px;
+      padding: 20px 24px;
+      border-left: 3px solid var(--accent);
+      background: rgba(239,255,0,0.04);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    .about-quote blockquote {
+      font-size: 1rem;
+      font-style: italic;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .about-quote cite {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.8rem;
+      font-style: normal;
+      color: var(--text-muted);
+    }
+
+    /* ─── FAQ ───────────────────────────────────────────────────── */
+    #faq { background: var(--bg); }
+    .faq-list {
+      margin-top: 40px;
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 18px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .faq-question:hover { background: rgba(255,255,255,0.03); }
+    .faq-arrow {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s;
+      color: var(--text-muted);
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer-inner {
+      padding: 0 20px 18px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── CTA final ─────────────────────────────────────────────── */
+    #cta-final {
+      background: var(--bg-card);
+      text-align: center;
+    }
+    .cta-text {
+      max-width: 600px;
+      margin: 20px auto 36px;
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .cta-final-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+    @media (min-width: 480px) { .cta-final-group { flex-direction: row; justify-content: center; } }
+    .cta-microcopy {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── Footer ────────────────────────────────────────────────── */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      text-align: center;
+    }
+    @media (min-width: 640px) {
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+    .footer-logo { font-weight: 800; font-size: 0.95rem; }
+    .footer-logo span { color: var(--accent); }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── Mobile sticky CTA ─────────────────────────────────────── */
+    .sticky-cta {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .sticky-cta {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        padding: 12px 16px;
+        background: rgba(18,18,18,0.96);
+        border-top: 1px solid var(--border);
+        backdrop-filter: blur(10px);
+        gap: 10px;
+      }
+      .sticky-cta .btn { flex: 1; font-size: 0.85rem; padding: 13px 10px; }
+      body { padding-bottom: 72px; }
+    }
+
+    /* ─── Divider ───────────────────────────────────────────────── */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">The Music<span>Deck</span></div>
+      <!-- ⚠️ Remplacer href par l'URL Whop du Web Directory -->
+      <a href="WHOP_DIRECTORY_URL" class="btn btn-primary nav-cta">Accéder — 25 €/an</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <span class="eyebrow">Booking B2B · USA + Europe</span>
+      <h1>Les vrais contacts des programmateurs<br>de festivals et de&nbsp;salles&nbsp;—&nbsp;vérifiés chaque&nbsp;semaine.</h1>
+      <p class="hero-subtitle">
+        4 000 contacts directs (USA + Europe), créés par des tourneurs, pour des tourneurs, agents, managers et artistes. Pas d'emails génériques. Que des décideurs. À partir de 25&nbsp;€/an, mises à jour hebdomadaires incluses.
+      </p>
+      <div class="hero-cta-group">
+        <!-- ⚠️ Remplacer les href par les vraies URLs Whop -->
+        <a href="WHOP_DIRECTORY_URL" class="btn btn-primary btn-lg">Accéder au directory — 25&nbsp;€/an</a>
+        <a href="WHOP_SHEET_URL" class="btn btn-secondary btn-lg">Voir l'offre Google Sheet — 199&nbsp;€/an</a>
+      </div>
+      <p class="hero-microcopy">Accès annuel. Mises à jour hebdomadaires incluses.</p>
+
+      <!-- ⚠️ Remplacer ce bloc par une vraie capture d'écran (stylisée ou floutée) -->
+      <div class="hero-visual">
+        <div class="hero-visual-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <span>Capture de l'interface directory — à insérer ici</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF BAR -->
+  <section id="proof-bar">
+    <div class="container">
+      <div class="proof-grid">
+        <div>
+          <div class="proof-number">4 000</div>
+          <div class="proof-label">contacts vérifiés</div>
+        </div>
+        <div>
+          <div class="proof-number">50–70</div>
+          <div class="proof-label">nouveaux contacts / semaine</div>
+        </div>
+        <div>
+          <div class="proof-number">2 pôles</div>
+          <div class="proof-label">USA + Europe (majorité France)</div>
+        </div>
+        <div>
+          <div class="proof-number">100%</div>
+          <div class="proof-label">décideurs (programmation)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLÈME -->
+  <section id="problem">
+    <div class="container">
+      <span class="eyebrow">Le problème</span>
+      <h2>Tu connais le problème mieux que personne.</h2>
+      <ul class="problem-list">
+        <li>Les bases de contacts achetées en ligne sont périmées, génériques (<code>info@</code>, <code>contact@</code>) et ne mènent nulle part.</li>
+        <li>Tu passes plus de temps à chercher le bon interlocuteur qu'à booker.</li>
+        <li>Les programmateurs changent de poste, les festivals s'arrêtent — et personne ne met les listes à jour.</li>
+        <li>Les outils existants coûtent une fortune pour une qualité moyenne.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section id="solution">
+    <div class="container">
+      <div class="solution-inner">
+        <span class="eyebrow">La solution</span>
+        <h2>Notre base de booking. Maintenant entre tes mains.</h2>
+        <p class="solution-text">
+          The Music Deck n'est pas une base achetée puis revendue. C'est <strong>notre propre carnet d'adresses</strong> — celui qu'on utilise tous les jours pour booker nos artistes. Chaque contact est vérifié, parce que c'est nous qui nous en servons. Quand un programmateur change de structure, part en retraite ou qu'un festival s'arrête, on est parmi les premiers au courant, et on met la base à jour : 50 à 70 entrées actualisées ou ajoutées chaque semaine. Tu accèdes à un outil vivant, pas à un fichier figé.
+        </p>
+        <div class="solution-tagline">« Créé par des tourneurs, pour des tourneurs et des artistes. »</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="container">
+      <span class="eyebrow">Pourquoi c'est différent</span>
+      <h2>Pourquoi The Music Deck change la donne.</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>C'est notre vraie base.</h3>
+          <p>Celle qu'on utilise pour notre propre booking, pas une liste générée pour la vente.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✅</div>
+          <h3>Tout est vérifié.</h3>
+          <p>On s'en sert nous-mêmes : pas de contacts fantômes, pas d'adresses mortes.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Mis à jour chaque semaine.</h3>
+          <p>Changements de poste, départs, festivals arrêtés : on suit en temps réel.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Que des décideurs.</h3>
+          <p>Adresses directes des responsables de programmation, jamais de boîtes génériques.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>USA + Europe.</h3>
+          <p>2 000 contacts outre-Atlantique, 2 000 en Europe, forte densité France.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎸</div>
+          <h3>Par des gens du métier.</h3>
+          <p>Pensé par des tourneurs qui connaissent la réalité du démarchage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <span class="eyebrow">Les offres</span>
+      <h2>Deux formules. Une seule qualité de données.</h2>
+      <div class="pricing-grid">
+
+        <!-- Web Directory -->
+        <div class="pricing-card">
+          <div>
+            <div class="pricing-name">Web Directory</div>
+            <div class="pricing-price">25&nbsp;€ <span>/ an</span></div>
+            <div class="pricing-desc">Accès au moteur de recherche en ligne</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> 4 000 contacts vérifiés</li>
+            <li><span class="check">✓</span> Mises à jour hebdomadaires incluses</li>
+            <li><span class="check">✓</span> Moteur de recherche complet</li>
+            <li><span class="check">✓</span> USA + Europe (majorité France)</li>
+            <li><span class="cross">✗</span> Export de données (CSV, Excel, CRM)</li>
+          </ul>
+          <div class="pricing-ideal">Idéal pour : artistes DIY, managers débutants, recherche ponctuelle</div>
+          <!-- ⚠️ Remplacer href par l'URL Whop du Web Directory -->
+          <a href="WHOP_DIRECTORY_URL" class="btn btn-secondary">Choisir le Web Directory — 25&nbsp;€/an</a>
+        </div>
+
+        <!-- Master Google Sheet -->
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Le plus complet</div>
+          <div>
+            <div class="pricing-name">Master Google Sheet</div>
+            <div class="pricing-price">199&nbsp;€ <span>/ an</span></div>
+            <div class="pricing-desc">La base complète, entièrement exportable</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> 4 000 contacts vérifiés</li>
+            <li><span class="check">✓</span> Mises à jour hebdomadaires incluses</li>
+            <li><span class="check">✓</span> Filtres, tris et imports libres</li>
+            <li><span class="check">✓</span> USA + Europe (majorité France)</li>
+            <li><span class="check">✓</span> <strong>Export illimité</strong> (CSV, Excel, CRM)</li>
+          </ul>
+          <div class="pricing-ideal">Idéal pour : agences, tourneurs, pros du CRM, campagnes régulières</div>
+          <!-- ⚠️ Remplacer href par l'URL Whop de la Master Sheet -->
+          <a href="WHOP_SHEET_URL" class="btn btn-primary">Obtenir la Master Sheet — 199&nbsp;€/an</a>
+        </div>
+
+      </div>
+      <p class="pricing-microcopy">Choisis le Directory Web pour la recherche, ou la Master Sheet pour l'export. La base est la même.</p>
+    </div>
+  </section>
+
+  <!-- PREVIEW -->
+  <section id="preview">
+    <div class="container">
+      <div class="preview-inner">
+        <span class="eyebrow">Aperçu</span>
+        <h2>Ce que tu vas trouver dans la base.</h2>
+        <!-- ⚠️ Remplacer ce bloc par une vraie capture floutée des colonnes : nom · structure · poste · ville · type · contact direct -->
+        <div class="preview-visual">
+          <div class="preview-placeholder">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity:0.3"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+            <span>Capture de la base (données floutées) — à insérer ici</span>
+            <small>Colonnes visibles : Nom · Structure · Poste · Ville · Type · Contact direct</small>
+          </div>
+        </div>
+        <div class="preview-caption">
+          <span class="preview-freshness">+63 contacts cette semaine</span>
+          <span>Aperçu de la base — données réelles floutées.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section id="about">
+    <div class="container">
+      <div class="about-inner">
+        <span class="eyebrow">À propos</span>
+        <h2>On vient de la route, pas du marketing.</h2>
+        <!-- ⚠️ FICTIF — Remplacer par la vraie histoire. Valider le nom du fondateur. -->
+        <p class="about-text">
+          The Music Deck est née sur la route, entre deux dates. Basée en France et au Royaume-Uni, notre équipe vit du booking depuis plus de dix ans. Le projet est porté par <strong>Eddy [NOM À VALIDER]</strong>, tourneur et fondateur, qui a constitué cette base contact après contact, tournée après tournée.
+        </p>
+        <!-- ⚠️ Choisir une version de citation, ou la remplacer par la vraie -->
+        <div class="about-quote">
+          <blockquote>
+            « On a simplement créé ce qu'on aurait rêvé d'avoir quand on a débuté : une base fiable, vivante, faite par des gens qui décrochent vraiment des dates. »
+          </blockquote>
+          <cite>— Eddy [NOM À VALIDER], fondateur de The Music Deck</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <span class="eyebrow">Questions fréquentes</span>
+      <h2>Ce qu'on nous demande souvent.</h2>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Les contacts sont-ils vraiment à jour ?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Oui. On les utilise nous-mêmes chaque semaine dans nos propres campagnes de démarchage, et on actualise 50 à 70 entrées par semaine. Une base qui sert vraiment est une base qui reste juste.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Quelle est la différence entre les deux offres ?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Le Web Directory (25 €/an) donne accès à un moteur de recherche complet, sans export. La Master Google Sheet (199 €/an) contient la même base, entièrement exportable — idéale pour ton CRM ou tes campagnes d'emailing.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Puis-je passer du Directory à la Sheet ?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Oui, contacte le support pour une mise à niveau au prorata.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            À qui s'adresse The Music Deck ?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Bookers et tourneurs, agents, managers d'artistes, et artistes qui s'autoproduisent.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Quelle est la couverture géographique ?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">4 000 contacts au total : 2 000 aux USA et 2 000 en Europe, avec une majorité en France. Les contacts USA sont vérifiés exactement comme les contacts France.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Est-ce que ce sont des emails génériques ?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Non, jamais. Uniquement les contacts directs des personnes en charge de la programmation.</div>
+          </div>
+        </div>
+
+        <!-- ⚠️ Compléter la politique d'abonnement avant mise en ligne -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            L'abonnement est-il renouvelé automatiquement ?
+            <span class="faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">[⚠️ À COMPLÉTER — préciser la politique de renouvellement automatique, d'annulation et de remboursement.]</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section id="cta-final">
+    <div class="container">
+      <span class="eyebrow">C'est parti</span>
+      <h2>Arrête de chercher. Commence à booker.</h2>
+      <p class="cta-text">
+        Arrête de perdre des heures à traquer le bon interlocuteur. Accède dès maintenant à la base que les tourneurs gardaient pour eux — et parle directement aux personnes qui programment.
+      </p>
+      <div class="cta-final-group">
+        <!-- ⚠️ Remplacer les href par les vraies URLs Whop -->
+        <a href="WHOP_DIRECTORY_URL" class="btn btn-secondary btn-lg">Accéder au directory — 25&nbsp;€/an</a>
+        <a href="WHOP_SHEET_URL" class="btn btn-primary btn-lg">Obtenir la base complète — 199&nbsp;€/an</a>
+      </div>
+      <p class="cta-microcopy">Accès immédiat après paiement. Mises à jour incluses toute l'année.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">The Music<span>Deck</span></div>
+          <div class="footer-copy" style="margin-top:6px">France &amp; UK · © The Music Deck</div>
+        </div>
+        <div class="footer-links">
+          <!-- ⚠️ Remplacer les href par les vraies pages légales -->
+          <a href="/mentions-legales">Mentions légales</a>
+          <a href="/cgv">CGV</a>
+          <a href="/confidentialite">Confidentialité</a>
+          <a href="mailto:contact@themusicdeck.com">Contact</a>
+          <!-- Lien "Déjà abonné" -->
+          <a href="https://access.themusicdeck.com/login?return_to=https://prog.themusicdeck.com/" style="color:var(--accent)">Déjà abonné ? Accéder au directory →</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- STICKY CTA (mobile only) -->
+  <div class="sticky-cta" aria-hidden="true">
+    <a href="WHOP_DIRECTORY_URL" class="btn btn-secondary">25&nbsp;€/an</a>
+    <a href="WHOP_SHEET_URL" class="btn btn-primary">Master Sheet — 199&nbsp;€</a>
+  </div>
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Hide sticky CTA once user scrolls past #cta-final
+    const ctaFinal = document.getElementById('cta-final');
+    const stickyCta = document.querySelector('.sticky-cta');
+    if (ctaFinal && stickyCta) {
+      const observer = new IntersectionObserver(([entry]) => {
+        stickyCta.style.opacity = entry.isIntersecting ? '0' : '1';
+        stickyCta.style.pointerEvents = entry.isIntersecting ? 'none' : 'auto';
+      }, { threshold: 0.1 });
+      observer.observe(ctaFinal);
+    }
+  </script>
+
+</body>
+</html>
