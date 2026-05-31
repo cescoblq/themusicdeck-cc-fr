@@ -221,11 +221,19 @@
       flex-shrink: 0;
       margin-top: 1px;
     }
+    .mono {
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      background: rgba(255,255,255,0.08);
+      padding: 1px 5px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
 
     /* ─── Solution ──────────────────────────────────────────────── */
     #solution { background: var(--bg-card); }
     .solution-inner {
-      max-width: 720px;
+      max-width: 900px;
     }
     .solution-text {
       margin-top: 24px;
@@ -651,7 +659,7 @@
       <span class="eyebrow">Le problème</span>
       <h2>Tu connais le problème mieux que personne.</h2>
       <ul class="problem-list">
-        <li>Les bases de contacts achetées en ligne sont périmées, génériques (<code>info@</code>, <code>contact@</code>) et ne mènent nulle part.</li>
+        <li>Les bases de contacts achetées en ligne sont périmées, génériques (<span class="mono">info@</span>, <span class="mono">contact@</span>) et ne mènent nulle part.</li>
         <li>Tu passes plus de temps à chercher le bon interlocuteur qu'à booker.</li>
         <li>Les programmateurs changent de poste, les festivals s'arrêtent — et personne ne met les listes à jour.</li>
         <li>Les outils existants coûtent une fortune pour une qualité moyenne.</li>
@@ -929,11 +937,10 @@
           <div class="footer-copy" style="margin-top:6px">France &amp; UK · © The Music Deck</div>
         </div>
         <div class="footer-links">
-          <!-- ⚠️ Remplacer les href par les vraies pages légales -->
-          <a href="/mentions-legales">Mentions légales</a>
-          <a href="/cgv">CGV</a>
-          <a href="/confidentialite">Confidentialité</a>
-          <a href="mailto:contact@themusicdeck.com">Contact</a>
+          <a href="/mentions-legales.html">Mentions légales</a>
+          <a href="/cgv.html">CGV</a>
+          <a href="/confidentialite.html">Confidentialité</a>
+          <a href="/contact.html">Contact</a>
           <!-- Lien "Déjà abonné" -->
           <a href="https://access.themusicdeck.com/login?return_to=https://prog.themusicdeck.com/" style="color:var(--accent)">Déjà abonné ? Accéder au directory →</a>
         </div>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — The Music Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #121212; color: #F5F5F5; line-height: 1.7; font-size: 16px; }
+    a { color: #EFFF00; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { position: sticky; top: 0; background: rgba(18,18,18,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 20px; }
+    .nav-inner { max-width: 860px; margin: 0 auto; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-weight: 800; font-size: 1.05rem; color: #F5F5F5; }
+    .nav-logo span { color: #EFFF00; }
+    .nav-back { font-size: 0.85rem; color: #999; }
+    .nav-back:hover { color: #F5F5F5; }
+    main { max-width: 640px; margin: 0 auto; padding: 60px 20px 100px; }
+    h1 { font-size: 2rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .intro { color: #aaa; margin-bottom: 40px; font-size: 1rem; }
+    .contact-card {
+      background: #1E1E1E;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 16px;
+    }
+    .contact-card h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #666; margin-bottom: 10px; }
+    .contact-card p { color: #aaa; font-size: 0.95rem; }
+    .contact-card a { color: #EFFF00; font-weight: 600; }
+    .divider { height: 1px; background: rgba(255,255,255,0.06); margin: 32px 0; }
+    .note { font-size: 0.85rem; color: #666; }
+    footer { border-top: 1px solid rgba(255,255,255,0.08); padding: 32px 20px; text-align: center; font-size: 0.8rem; color: #555; }
+    footer a { color: #777; margin: 0 10px; }
+    footer a:hover { color: #F5F5F5; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">The Music<span>Deck</span></a>
+      <a href="/" class="nav-back">← Retour à l'accueil</a>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Contact</h1>
+    <p class="intro">Une question sur le produit, un problème d'accès, ou tu veux passer de l'offre Web à la Master Sheet ? Écris-nous directement.</p>
+
+    <div class="contact-card">
+      <h2>Email</h2>
+      <p><a href="mailto:contact@themusicdeck.com">contact@themusicdeck.com</a></p>
+      <p style="margin-top:8px;font-size:0.85rem;color:#666">Réponse sous 24–48h en semaine.</p>
+    </div>
+
+    <div class="contact-card">
+      <h2>Déjà abonné ?</h2>
+      <p>Accède directement à ton espace membre : <a href="https://access.themusicdeck.com/login?return_to=https://prog.themusicdeck.com/">Se connecter →</a></p>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="note">
+      Pour toute demande relative à tes données personnelles (accès, rectification, suppression), consulte notre <a href="/confidentialite.html">Politique de confidentialité</a>.
+    </p>
+  </main>
+
+  <footer>
+    <a href="/">Accueil</a>
+    <a href="/mentions-legales.html">Mentions légales</a>
+    <a href="/cgv.html">CGV</a>
+    <a href="/confidentialite.html">Confidentialité</a>
+    <a href="/contact.html">Contact</a>
+    <br><br>© The Music Deck — France &amp; UK
+  </footer>
+</body>
+</html>
