@@ -112,6 +112,11 @@
     .nav-logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.02em; }
     .nav-logo span { color: var(--accent); }
     .nav-cta { padding: 10px 20px; font-size: 0.875rem; }
+    .lang-toggle { display: flex; align-items: center; gap: 4px; font-size: 0.78rem; font-weight: 600; }
+    .lang-toggle a { color: var(--text-muted); padding: 4px 7px; border-radius: 4px; transition: color 0.15s; }
+    .lang-toggle a:hover { color: var(--text); }
+    .lang-toggle a.active { color: var(--accent); }
+    .lang-toggle span { color: var(--border); }
 
     /* ─── Hero ──────────────────────────────────────────────────────── */
     #hero { padding-top: 100px; padding-bottom: 80px; }
@@ -275,8 +280,15 @@
   <nav>
     <div class="nav-inner">
       <div class="nav-logo">The Music<span>Deck</span></div>
-      <!-- ⚠️ Replace href with Whop Web Listing URL -->
-      <a href="WHOP_DIRECTORY_URL" class="btn btn-primary nav-cta">Get access — €25/year</a>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="lang-toggle">
+          <a href="/fr/">FR</a>
+          <span>|</span>
+          <a href="/en/" class="active">EN</a>
+        </div>
+        <!-- ⚠️ Replace href with Whop Web Listing URL -->
+        <a href="WHOP_DIRECTORY_URL" class="btn btn-primary nav-cta">Get access — €25/year</a>
+      </div>
     </div>
   </nav>
 

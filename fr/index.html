@@ -146,6 +146,11 @@
     .nav-logo span { color: var(--accent); }
     .nav-cta { display: none; }
     @media (min-width: 640px) { .nav-cta { display: inline-flex; } }
+    .lang-toggle { display: flex; align-items: center; gap: 4px; font-size: 0.78rem; font-weight: 600; }
+    .lang-toggle a { color: var(--text-muted); padding: 4px 7px; border-radius: 4px; transition: color 0.15s; }
+    .lang-toggle a:hover { color: var(--text); }
+    .lang-toggle a.active { color: var(--accent); }
+    .lang-toggle span { color: var(--border); }
 
     /* ─── Hero ──────────────────────────────────────────────────── */
     #hero {
@@ -717,8 +722,15 @@
   <nav>
     <div class="nav-inner">
       <div class="nav-logo">The Music<span>Deck</span></div>
-      <!-- ⚠️ Remplacer href par l'URL Whop du Web Directory -->
-      <a href="WHOP_DIRECTORY_URL" class="btn btn-primary nav-cta">Accéder — 25 €/an</a>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="lang-toggle">
+          <a href="/fr/" class="active">FR</a>
+          <span>|</span>
+          <a href="/en/">EN</a>
+        </div>
+        <!-- ⚠️ Remplacer href par l'URL Whop du Web Directory -->
+        <a href="WHOP_DIRECTORY_URL" class="btn btn-primary nav-cta">Accéder — 25 €/an</a>
+      </div>
     </div>
   </nav>
 
