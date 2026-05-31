@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 110" width="520" height="110">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&amp;display=swap');
+    </style>
+  </defs>
+  <rect width="520" height="110" fill="#121212" rx="12"/>
+  <text
+    x="36"
+    y="72"
+    font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-weight="800"
+    font-size="52"
+    letter-spacing="-0.025em">
+    <tspan fill="#F5F5F5">The Music</tspan><tspan fill="#EFFF00">Deck</tspan>
+  </text>
+</svg>
