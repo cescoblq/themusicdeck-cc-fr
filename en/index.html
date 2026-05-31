@@ -439,6 +439,17 @@
 
     /* ─── Comment ça marche ─────────────────────────────────────── */
     #how-it-works { background: var(--bg); }
+    .section-title-with-logo { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .whop-logo-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #fff; color: #000;
+      font-size: 0.75rem; font-weight: 800; letter-spacing: -0.01em;
+      padding: 4px 10px 4px 6px;
+      border-radius: 6px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .whop-logo-badge svg { width: 18px; height: 18px; }
     .steps-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -925,7 +936,13 @@
   <section id="how-it-works">
     <div class="container">
       <span class="eyebrow">How it works</span>
-      <h2>Access in 3 steps. Nothing to install.</h2>
+      <div class="section-title-with-logo">
+        <h2>Access in 3 steps. Nothing to install.</h2>
+        <span class="whop-logo-badge">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5l4 14 5-9 5 9 4-14" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Whop
+        </span>
+      </div>
       <div class="steps-grid">
 
         <div class="step">
