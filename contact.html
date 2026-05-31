@@ -7,32 +7,99 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- TRACKING — décommenter + remplacer les IDs avant activation
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','XXXXXXXXXXXXXXX');fbq('track','PageView');</script>
+  -->
+
+  <!-- hCaptcha — chargé ici pour disponibilité dans le formulaire -->
+  <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; background: #121212; color: #F5F5F5; line-height: 1.7; font-size: 16px; }
     a { color: #EFFF00; text-decoration: none; }
     a:hover { text-decoration: underline; }
+
     nav { position: sticky; top: 0; background: rgba(18,18,18,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 20px; }
     .nav-inner { max-width: 860px; margin: 0 auto; height: 60px; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { font-weight: 800; font-size: 1.05rem; color: #F5F5F5; }
     .nav-logo span { color: #EFFF00; }
     .nav-back { font-size: 0.85rem; color: #999; }
     .nav-back:hover { color: #F5F5F5; }
+
     main { max-width: 640px; margin: 0 auto; padding: 60px 20px 100px; }
-    h1 { font-size: 2rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
-    .intro { color: #aaa; margin-bottom: 40px; font-size: 1rem; }
-    .contact-card {
+    h1 { font-size: 2rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .intro { color: #999; margin-bottom: 40px; font-size: 0.95rem; line-height: 1.6; }
+
+    /* ── Formulaire ── */
+    .form-grid { display: flex; flex-direction: column; gap: 20px; }
+
+    .form-row { display: grid; gap: 20px; }
+    @media (min-width: 480px) { .form-row { grid-template-columns: 1fr 1fr; } }
+
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    label { font-size: 0.8rem; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.07em; }
+
+    input, select, textarea {
+      background: #1E1E1E;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: #F5F5F5;
+      font-family: inherit;
+      font-size: 0.95rem;
+      padding: 12px 14px;
+      width: 100%;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+    input::placeholder, textarea::placeholder { color: #555; }
+    select option { background: #1E1E1E; }
+    input:focus, select:focus, textarea:focus { border-color: rgba(239,255,0,0.5); }
+    textarea { resize: vertical; min-height: 130px; }
+
+    /* hCaptcha wrapper */
+    .captcha-wrap { display: flex; align-items: center; }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: #EFFF00;
+      color: #000;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      width: 100%;
+    }
+    .btn-submit:hover { background: #c8d800; }
+    .btn-submit:active { transform: scale(0.98); }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* États du formulaire */
+    #form-success, #form-error { display: none; border-radius: 8px; padding: 16px 20px; font-size: 0.9rem; line-height: 1.5; margin-top: 8px; }
+    #form-success { background: rgba(0,200,100,0.1); border: 1px solid rgba(0,200,100,0.3); color: #5fdd9d; }
+    #form-error   { background: rgba(255,80,80,0.08); border: 1px solid rgba(255,80,80,0.25); color: #ff8080; }
+
+    .divider { height: 1px; background: rgba(255,255,255,0.06); margin: 40px 0; }
+
+    .already-member {
       background: #1E1E1E;
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 28px 32px;
-      margin-bottom: 16px;
+      border-radius: 10px;
+      padding: 20px 24px;
     }
-    .contact-card h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #666; margin-bottom: 10px; }
-    .contact-card p { color: #aaa; font-size: 0.95rem; }
-    .contact-card a { color: #EFFF00; font-weight: 600; }
-    .divider { height: 1px; background: rgba(255,255,255,0.06); margin: 32px 0; }
-    .note { font-size: 0.85rem; color: #666; }
+    .already-member p { color: #999; font-size: 0.9rem; margin-bottom: 8px; }
+    .already-member a { font-weight: 600; }
+
     footer { border-top: 1px solid rgba(255,255,255,0.08); padding: 32px 20px; text-align: center; font-size: 0.8rem; color: #555; }
     footer a { color: #777; margin: 0 10px; }
     footer a:hover { color: #F5F5F5; }
@@ -48,24 +115,74 @@
 
   <main>
     <h1>Contact</h1>
-    <p class="intro">Une question sur le produit, un problème d'accès, ou tu veux passer de l'offre Web à la Master Sheet ? Écris-nous directement.</p>
+    <p class="intro">Une question sur le produit, un problème d'accès, ou tu veux passer au niveau supérieur&nbsp;? Envoie-nous un message, on répond sous 24–48h en semaine.</p>
 
-    <div class="contact-card">
-      <h2>Email</h2>
-      <p><a href="mailto:contact@themusicdeck.com">contact@themusicdeck.com</a></p>
-      <p style="margin-top:8px;font-size:0.85rem;color:#666">Réponse sous 24–48h en semaine.</p>
-    </div>
+    <!--
+      SETUP REQUIS avant mise en ligne :
+      1. Créer un compte gratuit sur https://formspree.io
+         → Créer un Form → copier l'ID (ex: xpwzabcd)
+         → Remplacer VOTRE_ID_FORMSPREE ci-dessous
+      2. Créer un compte gratuit sur https://www.hcaptcha.com
+         → Créer un site → copier la Site Key
+         → Remplacer VOTRE_HCAPTCHA_SITE_KEY ci-dessous (×1)
+    -->
+    <form
+      id="contact-form"
+      action="https://formspree.io/f/VOTRE_ID_FORMSPREE"
+      method="POST"
+    >
+      <!-- Honeypot anti-bot (Formspree) -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
-    <div class="contact-card">
-      <h2>Déjà abonné ?</h2>
-      <p>Accède directement à ton espace membre : <a href="https://access.themusicdeck.com/login?return_to=https://prog.themusicdeck.com/">Se connecter →</a></p>
-    </div>
+      <div class="form-grid">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Nom</label>
+            <input type="text" id="name" name="name" required placeholder="Ton prénom et nom" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="ton@email.com" autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Sujet</label>
+          <select id="subject" name="subject">
+            <option value="question-produit">Question sur le produit</option>
+            <option value="probleme-acces">Problème d'accès</option>
+            <option value="upgrade">Passer à la Master Sheet</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required placeholder="Décris ta question ou ton problème..."></textarea>
+        </div>
+
+        <!-- hCaptcha — remplacer VOTRE_HCAPTCHA_SITE_KEY -->
+        <div class="captcha-wrap">
+          <div class="h-captcha" data-sitekey="VOTRE_HCAPTCHA_SITE_KEY" data-theme="dark"></div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submit-btn">
+          Envoyer le message →
+        </button>
+
+        <div id="form-success">Message envoyé ! On te répond sous 24–48h.</div>
+        <div id="form-error">Une erreur est survenue. Réessaie ou écris directement à <strong>contact@themusicdeck.com</strong>.</div>
+
+      </div>
+    </form>
 
     <div class="divider"></div>
 
-    <p class="note">
-      Pour toute demande relative à tes données personnelles (accès, rectification, suppression), consulte notre <a href="/confidentialite.html">Politique de confidentialité</a>.
-    </p>
+    <div class="already-member">
+      <p>Déjà abonné ?</p>
+      <a href="https://access.themusicdeck.com/login?return_to=https://prog.themusicdeck.com/">Accéder à ton espace directory →</a>
+    </div>
   </main>
 
   <footer>
@@ -76,5 +193,40 @@
     <a href="/contact.html">Contact</a>
     <br><br>© The Music Deck — France &amp; UK
   </footer>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const btn  = document.getElementById('submit-btn');
+    const ok   = document.getElementById('form-success');
+    const err  = document.getElementById('form-error');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Envoi en cours…';
+      ok.style.display = 'none';
+      err.style.display = 'none';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.reset();
+          if (window.hcaptcha) window.hcaptcha.reset();
+          ok.style.display = 'block';
+          btn.textContent = 'Message envoyé ✓';
+        } else {
+          throw new Error('server');
+        }
+      } catch {
+        err.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Envoyer le message →';
+      }
+    });
+  </script>
 </body>
 </html>
