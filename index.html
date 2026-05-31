@@ -888,32 +888,29 @@
         <span class="eyebrow">Aperçu</span>
         <h2>Ce que tu vas trouver dans la base.</h2>
 
-        <!-- ⚠️ Remplacer VIDEO_1_URL et VIDEO_2_URL par les vraies URLs de tes vidéos (.mp4 hébergé ou lien CDN)
-             Pour YouTube/Vimeo, utiliser <iframe> à la place du tag <video> (voir commentaire ci-dessous) -->
+        <!-- ⚠️ Remplacer YOUTUBE_ID_1 et YOUTUBE_ID_2 par les IDs de tes vidéos YouTube non répertoriées
+             (l'ID est la partie après ?v= dans l'URL, ex : dQw4w9WgXcQ) -->
         <div class="preview-videos">
 
           <div class="preview-video-wrap">
-            <video class="preview-video" controls preload="metadata" poster="">
-              <source src="VIDEO_1_URL.mp4" type="video/mp4">
-              Ton navigateur ne supporte pas la lecture vidéo.
-            </video>
+            <iframe class="preview-video"
+              src="https://www.youtube.com/embed/YOUTUBE_ID_1?rel=0&modestbranding=1"
+              title="Le Web Directory en action"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
             <div class="preview-video-label">Le Web Directory en action</div>
           </div>
 
           <div class="preview-video-wrap">
-            <video class="preview-video" controls preload="metadata" poster="">
-              <source src="VIDEO_2_URL.mp4" type="video/mp4">
-              Ton navigateur ne supporte pas la lecture vidéo.
-            </video>
+            <iframe class="preview-video"
+              src="https://www.youtube.com/embed/YOUTUBE_ID_2?rel=0&modestbranding=1"
+              title="La Master Google Sheet"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
             <div class="preview-video-label">La Master Google Sheet</div>
           </div>
-
-          <!--
-          Pour YouTube, remplacer le bloc <video> par :
-          <iframe class="preview-video" src="https://www.youtube.com/embed/VIDEOID?rel=0"
-            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
-            gyroscope; picture-in-picture" allowfullscreen></iframe>
-          -->
 
         </div>
 
